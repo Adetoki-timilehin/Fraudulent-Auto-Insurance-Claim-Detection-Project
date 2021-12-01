@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>IntTeck Model</title>
+		<meta name="viewport", content="width = device-width, initial-scale = 1"/>
+		<style>
+			p.border{
+			    border-bottom: 1px solid rgb(187, 187, 187);
+  				padding: 10px;
+			}
+			.header{
+				padding: 10px;
+				font-size: 35px;
+				font-style: oblique;
+				color: midnightblue;
+			}
+			.column-1 {
+				color: rgb(38, 76, 92);
+				font-size: 20px;
+				margin-right: 70px;
+				margin-left: 150px;
+  				float: left;
+  				width: 20%;
+ 				padding: 15px;
+			}
+			.column-2{
+				margin-right: 10px;
+				border-radius: 15px;
+				border: 0.2px solid rgb(240, 240, 240);
+  				float: left;
+  				width: 50%;
+ 				padding-left: 45px;
+				padding-top: 50px;
+				padding-bottom: 50px;
+				background-color: rgb(245, 245, 245) ;
+			}
+			.row:after {
+  			content: "";
+ 			display: table;
+ 			clear: both;
+			}
+
+			@media screen and (max-width:600px) {
+				p.border{
+			    border-bottom: 1px solid rgb(187, 187, 187);
+  				padding: 10px;
+				width: 98%;
+				}
+				.header{
+				padding: 2%;
+				font-size: 110%;
+				font-style: oblique;
+				color: rgb(38, 38, 150);
+			    }
+  				.column-1 {
+					float: left; 
+   					width: 70%;
+					font-size: 14px;
+					color: rgb(76, 64, 131);
+					margin-right: 30%;
+					margin-left: 2%;
+					margin-bottom: 5%;
+					padding-bottom: 5%;
+ 				}
+				.column-2 {
+					width: 100%;
+					margin-top: 5%;
+					margin-left: 5%;
+					margin-right: 10%;
+					border-radius: 15px;
+					border: 0.2px solid rgb(235, 234, 234);
+  					float:none;
+ 					padding-left: 5%;
+					padding-top: 5%;
+					padding-bottom: 10%;
+					background-color: rgb(245, 245, 245) ;
+				}
+				
+				label{
+					font-weight: bold;
+					font-family: Helvetica;
+					font-size: 18px;
+					display: inline-block;
+					width: 300px;
+					text-align: left;
+					color: rgb(19, 18, 18);
+					font-weight: bold;
+				}
+				input{
+				margin-bottom: 10px;
+				width: 50%;
+				padding: 5px;
+				border: 2px solid rgb(211, 208, 208);
+				font-size: 16px;
+				height: 18px;
+				}
+
+				input[type = "submit"]{
+				font-family:Georgia, 'Times New Roman', Times, serif;
+				width: 25%;
+				height: 20%;
+				background-color: rgb(13, 24, 73);
+				color: rgb(255, 255, 255);
+				margin-bottom: 10px;
+				border: none;
+				font-size: 17px;
+				border-radius: 0%;
+
+				}
+				select{
+				width: 25%;
+				padding: 5%;
+				font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+				font-size: 15%;
+				margin-bottom: 10%;
+				height: 20%;
+				
+			}
+			}
+
+			body {
+  				background-color: rgb(255, 255, 255);
+			}
+			form {
+				text-align: left
+			}
+			
+			input{
+				margin-bottom: 10px;
+				width: 50%;
+				padding: 5px;
+				border: 2px solid rgb(211, 208, 208);
+			}
+
+			
+			input[type = "submit"]{
+				font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+				width: 25%;
+				height: 40px;
+				background-color: rgb(42, 67, 175);
+				color: rgb(255, 255, 255);
+				margin-bottom: 10px;
+				border: none;
+				font-size: 16px;
+			}
+			select{
+				width: 28%;
+				padding: 5px;
+				font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+				font-size: 15px;
+				margin-bottom: 10px;
+				
+			}
+			
+			label{
+				font-weight: bold;
+				font-family:fantasy;
+				font-size: 16px;
+				display: inline-block;
+				width: 300px;
+				text-align: left;
+				color: rgb(48, 47, 47);
+			}
+			html {
+ 				scroll-behavior: smooth;
+			}
+			
+			
+		</style>
+	</head>
+	
+	<body>
+		
+		<p class="border">
+			<img src="{{url_for('static', filename='img/logo.jpg')}}" />
+		</p>
+		<div class = "header" ><center><h1> Fraudulent Auto-Insurance Claim Detection System </h1></center></div>
+		
+			<div class = "row">
+				<div class="column-1">
+					<p> This is a model which takes in the variables of an Insurance claim case, and provides an estimate for its percentage likely-hood to be fraudulent.</p>
+				</div>
+				<div class="column-2">
+					<form methods="POST" action="{{url_for('prediction')}}">
+						<label for = "age"> Age of Customer </label> <br></br>
+						<input type = "number" id = "age" name = "b" required = "required" ></input>
+			
+						<br> <br/>
+
+						
+						<label for = "insured_sex"> Gender </label> <br></br>
+						<select id = "insured_sex" name = "n">
+							<option value = "1"> Male </option>
+							<option value = "2"> Female </option>
+						</select>
+			
+						<br> <br/>
+
+						<label for = "education"> Education level of customer </label> <br></br>
+						<select id = "education" name = "o">
+							<option value = "1"> High school diploma </option>
+							<option value = "2"> University Degree </option>
+							<option value = "3"> Masters </option>
+							<option value = "4"> PhD </option>
+							<option value = "5"> JD </option>
+							<option value = "6"> MD </option>
+							<option value = "7"> Associates Degree </option>
+						</select>
+			
+						<br> <br/>
+
+						<label for = "a"> Number of Months as Customer </label> <br></br>
+						<input type = "number" id = "a" name = "a" required = "required" ></input>
+			
+						<br> <br/>
+
+						<label for = "incident"> Incident Type </label> <br></br>
+						<select id = "incident" name = "p">
+							<option value = "2"> Single vehicle Collision  </option>
+							<option value = "1"> Multiple-vehicle Collision </option>
+							<option value = "4"> Parked Car </option>
+							<option value="3"> Vehicle Theft</option>
+						</select>
+			
+						<br> <br/>
+						<label for = "collision"> Collision Type </label> <br></br>
+						<select id = "collision" name = "q">
+							<option value = "1"> Rear collision </option>
+							<option value = "3"> Front collision </option>
+							<option value = "2"> Side collision </option>
+						</select>
+			
+						<br> <br/>
+
+						<label for = "incident_severity"> Incident Severity </label> <br></br>
+						<select id = "incident_severity" name = "r">
+							<option value = "4"> Trivial Damage </option>
+							<option value = "1"> Minor Damage</option>
+							<option value = "2"> Major Damage </option>
+							<option value="3"> Total Loss</option>
+						</select>
+			
+						<br> <br/>
+
+						<label for = "hour"> Incident Hour of the Day </label> <br></br> 
+						<input type = "number" id = "hour" name = "f" required = "required" ></input>
+			
+						<br> </br>
+
+						<label for = "nvehicles"> Number of Vehicles Involved </label> <br></br>
+						<input type = "number" id = "nvehicles" name = "g" required = "required"></input>
+			
+						<br> </br>
+
+						<label for = "damage"> Property Damage </label> <br></br>
+						<select id = "damage" name = "t">
+							<option value = "2"> Yes</option>
+							<option value = "1"> No </option>
+						</select>
+
+						<br> </br>
+
+						<label for = "Injuries"> Number of Bodily Injuries </label> <br></br>
+						<input type = "number" id = "Injuries" name = "h" required = "required"></input>
+			
+						<br> </br>
+
+						<label for = "witnesses"> Number of Witnesses</label> <br></br>
+						<input type = "number" id = "witnesses" name = "i" required = "required"></input>
+			
+						<br> </br>
+
+						<label for = "auto"> Auto Make </label> <br></br>
+						<select id = "auto" name = "v">
+							<option value = "1"> Toyota </option>
+							<option value = "2"> Honda </option>
+							<option value = "3"> Nissan </option>
+							<option value="4"> Chevrolet</option>
+							<option value="5"> Accura </option>
+							<option value="6"> Suburu </option>
+							<option value="7"> BMW </option>
+							<option value="8"> Mercedes </option>
+							<option value="9"> Audi </option>
+							<option value="10"> Ford </option>
+							<option value="11"> Volkswagen </option>
+							<option value="12"> Dodge </option>
+							<option value="13"> Saab </option>
+							<option value="14"> Jeep </option>
+						</select>
+			
+						<br> <br/>
+						<label for = "Year"> Auto Year </label> <br></br>
+						<input type="number" name="m" id="Year" required = "required">
+			
+						<br> </br>
+						
+						<label for = "authorities"> Authorities Contacted </label> <br></br>
+						<select id = "authorities" name = "s">
+							<option value = "1"> Police </option>
+							<option value = "4"> Ambulance </option>
+							<option value = "2"> Fire Service </option>
+							<option value="3"> other </option>
+							<option value="5"> none </option>
+						</select>
+			
+						<br> <br/>
+
+						<label for = "police_report_available"> Police Report Available </label> <br></br>
+						<select id = "police_report_available" name = "u">
+							<option value = "2"> Yes</option>
+							<option value = "1"> No </option>
+						</select>
+					
+						<br> </br>
+
+
+			
+						<label> </label>
+						<input id = "submit", type = "submit" value = "SUBMIT"></input>
+					</form>
+				</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>IntTeck Model prediction</title>
+        <style>
+			p.border{
+			    border-bottom: 1px solid rgb(187, 187, 187);
+  				padding: 10px;
+			}
+			.header{
+				padding: 10px;
+				font-size: 35px;
+				font-style: oblique;
+				color: midnightblue;
+			}
+            body {
+  				background-color: rgb(255, 255, 255);
+			}
+        </style>
+    </head>
+    <body>
+    <center>
+        <p class="border">
+			<img src="{{url_for('static', filename='img/logo.jpg')}}" />
+            <div class = "header" ><center><h1> Fraudulent Auto-Insurance Claim Detection System </h1></center></div>
+            <h2> Prediction </h2>
+            <p> 
+				<h1>{{dat}}</h1>
+		    </p>
+		</p>
+        <a href = "/"> Back to home page</a>
+    </center>
+    </body>
+</html>
