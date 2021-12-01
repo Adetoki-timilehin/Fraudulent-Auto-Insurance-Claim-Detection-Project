@@ -1,1 +1,1 @@
-Python - 3.8.4 32-bit
+python-3.8.12
